@@ -116,6 +116,8 @@ El frontend está expuesto en http://localhost:80 donde podemos cargar ficheros 
 **Flask-backend**: Servidor backend desarrollado en Flask, que proporciona la lógica del servidor para la aplicación.
 **Analyizer**:  Servicio que analiza los datos de los tweets.
 
+## Vista del FRONT END
 
+![](./doc/img/tweet_sentiment_stats_chart.drawio.png)
 
 
