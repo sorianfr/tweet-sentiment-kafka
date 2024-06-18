@@ -79,7 +79,7 @@ Esto asegura que las consultas y configuraciones de ksqlDB estén preparadas par
 
 Crea el STREAM y la TABLA de KSQL desde el script ksql-setup.sql 
 
-}}10. Reinicio de la aplicación de flask-backend:** 
+**10. Reinicio de la aplicación de flask-backend:** 
 
 Es necesario que las consultas de ksql estén creadas primero. 
 
