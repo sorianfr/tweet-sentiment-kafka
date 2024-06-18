@@ -35,7 +35,7 @@ Podemos acceder al frontend: http://localhost:80 y podemos ir cargando ficheros 
 
 ## Consultas KSQLDB:
 
-El código para la creación de streams y tablas están en el fichero ksql-setup.sql. y la consulta para recibir el stream de los datos está definida en app.py utilizando la API de KSQL Server y SocketIO para hacer push en real time al front end.
+El código para la creación de streams y tablas están en el fichero **ksql-setup.sql**. y la consulta para recibir el stream de los datos está definida en app.py utilizando la API de KSQL Server y SocketIO para hacer push en real time al front end.
 
 
 ## Diagrama de arquitectura de componentes
