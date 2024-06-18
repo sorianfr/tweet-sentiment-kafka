@@ -1,4 +1,5 @@
-# tweet_sentiment_analysis_real_time
+# Tweet Sentiment Analysis con Kafka
+
 
 
 ## Flujo de la aplicación:
@@ -15,7 +16,7 @@ Fuente de Datos:
 
 https://www.kaggle.com/datasets/austinreese/trump-tweets?select=trumptweets.csv
 
-## Manual de Operaciones:
+## Manual de Operaciones - ONE CLICK DEPLOYMENT
 
 Desde la terminal ejecutando el fichero run.sh se levanta toda la aplicación y se ejecutan los queries de stream en KSQL 
 
@@ -40,4 +41,11 @@ El código para la creación de streams y tablas están en el fichero ksql-setup
 ## Diagrama de arquitectura de componentes
 
 ![](./doc/img/tweet_sentiment_stats_chart.drawio.png)
+
+## Manual de Uso: 
+
+El frontend está expuesto en http://localhost:80 donde podemos cargar ficheros csv (con el mismo esquema al definido al inicio), y donde visualizaremos el stream de tweets, con la clasificación, conteo de la clase de sentimiento a la que pertence el tweet y la media de polaridad de su clase.
+
+
+
 
