@@ -19,20 +19,75 @@ https://www.kaggle.com/datasets/austinreese/trump-tweets?select=trumptweets.csv
 
 ## Manual de Operaciones - ONE CLICK DEPLOYMENT
 
-Desde la terminal ejecutando el fichero run.sh se levanta toda la aplicación y se ejecutan los queries de stream en KSQL 
+El archivo run.sh es un script de bash diseñado para automatizar el despliegue y configuración de los servicios necesarios para la aplicación de análisis de sentimientos de tweets en tiempo real. 
 
-Descripción de la operativa de run.sh
+Descripción de la operativa de run.sh 
 
-1.- Se baja e instala los conectores Spooldir y Kafka Mongo Connect 
-2.- Levanta los servicios de zookeeper broker schema-registry connect control-center ksqldb-server ksqldb-cli mongo1 mongo2 mongo3 
-3.- Configura MongoDB como un replicaset para poder utilizar el conector de Kafka Connect
-4.- Reinicializa Kafka Connect cuando los conectores han sido instalados en el contenedor.
-5.- Configura los conectores de Spooldir CSV Source y MongoDB Sink
-6.- Inicia el resto de contenedores que se encargar de la aplicación frontend, flask-backend y analyzer
-7.- Crea el STREAM y la TABLA de KSQL desde el script ksql-setup.sql
-8.- Reinicia la aplicación de flask-backend ya que necesita que las consultas de ksql estén creadas primero.
+1. Creación de Directorios: 
 
-Podemos acceder al frontend: http://localhost:80 y podemos ir cargando ficheros y viendo debajo la actualización en tiempo real de la query en KSQL.
+Se crean directorios para almacenar los plugins de Kafka Connect: SpoolDir y MongoDB. 
+
+Esto asegura que los conectores necesarios se descarguen y almacenen correctamente. 
+
+2. Descarga de Conectores: 
+
+Se descargan los conectores SpoolDir y MongoDB desde las URLs especificadas. 
+
+La descarga se verifica para asegurar que se haya completado correctamente. 
+
+3. Descompresión y Verificación: 
+
+El conector SpoolDir se descomprime en su directorio correspondiente. 
+
+Se verifica el contenido de los directorios de los conectores para asegurar que los archivos necesarios estén presentes. 
+
+4. Inicio de Servicios Docker: 
+
+Se inician varios servicios Docker en segundo plano: Zookeeper, broker de Kafka, Schema Registry, Kafka Connect, Control Center, ksqlDB server, ksqlDB CLI y las instancias de MongoDB. 
+
+Estos servicios son esenciales para la ingesta, procesamiento y almacenamiento de datos. 
+
+5. Configuración de MongoDB ReplicaSet: 
+
+Se configura un ReplicaSet en MongoDB utilizando el primer nodo (mongo1). 
+
+Esto es crucial para asegurar la alta disponibilidad y redundancia de los datos. 
+
+6 .Verificación de Kafka Connect: 
+
+El script espera hasta que Kafka Connect esté listo para recibir conexiones, realizando comprobaciones periódicas. 
+
+Se reinicia Kafka Connect para asegurar que todos los conectores estén correctamente cargados. 
+
+7. Adición de Conectores de Kafka: 
+
+Se añaden los conectores SpoolDir y MongoDB a Kafka Connect mediante llamadas a la API REST de Kafka Connect. 
+
+Esto permite la integración y movimiento de datos entre Kafka y otras fuentes/destinos de datos. 
+
+8 .Inicio de Servicios Restantes: 
+
+Se inician los servicios Docker restantes: el frontend (Nginx), el backend (Flask) y el analizador de tweets. 
+
+Estos servicios completan la infraestructura necesaria para la aplicación. 
+
+9. Ejecución del Script de Configuración de ksqlDB: 
+
+Se ejecuta un script de configuración para ksqlDB desde el cliente CLI. 
+
+Esto asegura que las consultas y configuraciones de ksqlDB estén preparadas para el procesamiento de datos en tiempo real. 
+
+Crea el STREAM y la TABLA de KSQL desde el script ksql-setup.sql 
+
+10. Reinicio de la aplicación de flask-backend: 
+
+Es necesario que las consultas de ksql estén creadas primero. 
+
+ 
+
+Este enfoque automatizado garantiza que todos los componentes de la aplicación estén correctamente configurados y listos para operar, facilitando el despliegue y la administración de la plataforma de análisis de sentimientos de tweets. 
+
+
 
 ## Consultas KSQLDB:
 
@@ -49,17 +104,17 @@ El frontend está expuesto en http://localhost:80 donde podemos cargar ficheros 
 
 ## Servicios Utilizados:
  
-Zookeeper:  Proporciona un servicio centralizado de coordinación para mantener la configuración y el estado de los clústeres de Kafka.
-Broker: Broker de Kafka que gestiona la transmisión de mensajes en el clúster de Kafka.
-Schema-registry: Almacena y gestiona los esquemas Avro utilizados en Kafka.
-Connect: Proporciona capacidades de integración para conectores de Kafka para mover grandes cantidades de datos dentro y fuera de Kafka.
-Control-center: Interfaz de usuario para monitorear y administrar el ecosistema de Confluent.
-Ksqldb-server: Proporciona capacidades de procesamiento de flujos en tiempo real utilizando SQL sobre Kafka.
-Ksqldb-cli:
-Mongo1, mongo2, mongo3: Base de datos NoSQL utilizada para almacenar datos persistentes. Configurado en modo replicado para alta disponibilidad.
-Frontend: Servidor web Nginx utilizado para servir la aplicación frontend.
-Flask-backend: Servidor backend desarrollado en Flask, que proporciona la lógica del servidor para la aplicación.
-Analyizer:  Servicio que analiza los datos de los tweets.
+**Zookeeper**:  Proporciona un servicio centralizado de coordinación para mantener la configuración y el estado de los clústeres de Kafka.
+**Broker**: Broker de Kafka que gestiona la transmisión de mensajes en el clúster de Kafka.
+**Schema-registry**: Almacena y gestiona los esquemas Avro utilizados en Kafka.
+**Connect**: Proporciona capacidades de integración para conectores de Kafka para mover grandes cantidades de datos dentro y fuera de Kafka.
+**Control-center**: Interfaz de usuario para monitorear y administrar el ecosistema de Confluent.
+**Ksqldb-server**: Proporciona capacidades de procesamiento de flujos en tiempo real utilizando SQL sobre Kafka.
+**Ksqldb-cli**: Cliente para acceso a KsqlDB Server. 
+**Mongo1, mongo2, mongo3**: Base de datos NoSQL utilizada para almacenar datos persistentes. Configurado en modo replicado para alta disponibilidad.
+**Frontend**: Servidor web Nginx utilizado para servir la aplicación frontend.
+**Flask-backend**: Servidor backend desarrollado en Flask, que proporciona la lógica del servidor para la aplicación.
+**Analyizer**:  Servicio que analiza los datos de los tweets.
 
 
 
