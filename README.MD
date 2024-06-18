@@ -38,3 +38,6 @@ El código para la creación de streams y tablas están en el fichero ksql-setup
 
 
 ## Diagrama de arquitectura de componentes
+
+![](./doc/img/tweet_sentiment_stats_chart.drawio.png)
+
