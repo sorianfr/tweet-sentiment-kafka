@@ -23,55 +23,55 @@ El archivo run.sh es un script de bash diseñado para automatizar el despliegue 
 
 Descripción de la operativa de run.sh 
 
-1. Creación de Directorios: 
+**1. Creación de Directorios:** 
 
 Se crean directorios para almacenar los plugins de Kafka Connect: SpoolDir y MongoDB. 
 
 Esto asegura que los conectores necesarios se descarguen y almacenen correctamente. 
 
-2. Descarga de Conectores: 
+**2. Descarga de Conectores:** 
 
 Se descargan los conectores SpoolDir y MongoDB desde las URLs especificadas. 
 
 La descarga se verifica para asegurar que se haya completado correctamente. 
 
-3. Descompresión y Verificación: 
+**3. Descompresión y Verificación:** 
 
 El conector SpoolDir se descomprime en su directorio correspondiente. 
 
 Se verifica el contenido de los directorios de los conectores para asegurar que los archivos necesarios estén presentes. 
 
-4. Inicio de Servicios Docker: 
+**4. Inicio de Servicios Docker:** 
 
 Se inician varios servicios Docker en segundo plano: Zookeeper, broker de Kafka, Schema Registry, Kafka Connect, Control Center, ksqlDB server, ksqlDB CLI y las instancias de MongoDB. 
 
 Estos servicios son esenciales para la ingesta, procesamiento y almacenamiento de datos. 
 
-5. Configuración de MongoDB ReplicaSet: 
+**5. Configuración de MongoDB ReplicaSet:** 
 
 Se configura un ReplicaSet en MongoDB utilizando el primer nodo (mongo1). 
 
 Esto es crucial para asegurar la alta disponibilidad y redundancia de los datos. 
 
-6 .Verificación de Kafka Connect: 
+**6 .Verificación de Kafka Connect:** 
 
 El script espera hasta que Kafka Connect esté listo para recibir conexiones, realizando comprobaciones periódicas. 
 
 Se reinicia Kafka Connect para asegurar que todos los conectores estén correctamente cargados. 
 
-7. Adición de Conectores de Kafka: 
+**7. Adición de Conectores de Kafka:** 
 
 Se añaden los conectores SpoolDir y MongoDB a Kafka Connect mediante llamadas a la API REST de Kafka Connect. 
 
 Esto permite la integración y movimiento de datos entre Kafka y otras fuentes/destinos de datos. 
 
-8 .Inicio de Servicios Restantes: 
+**8 .Inicio de Servicios Restantes:** 
 
 Se inician los servicios Docker restantes: el frontend (Nginx), el backend (Flask) y el analizador de tweets. 
 
 Estos servicios completan la infraestructura necesaria para la aplicación. 
 
-9. Ejecución del Script de Configuración de ksqlDB: 
+**9. Ejecución del Script de Configuración de ksqlDB:** 
 
 Se ejecuta un script de configuración para ksqlDB desde el cliente CLI. 
 
@@ -79,7 +79,7 @@ Esto asegura que las consultas y configuraciones de ksqlDB estén preparadas par
 
 Crea el STREAM y la TABLA de KSQL desde el script ksql-setup.sql 
 
-10. Reinicio de la aplicación de flask-backend: 
+}}10. Reinicio de la aplicación de flask-backend:** 
 
 Es necesario que las consultas de ksql estén creadas primero. 
 
