@@ -118,6 +118,6 @@ El frontend está expuesto en http://localhost:80 donde podemos cargar ficheros 
 
 ## Vista del FRONT END
 
-![](./doc/img/tweet_sentiment_stats_chart.drawio.png)
+![](./doc/img/FrontEnd_Tweet_Kafka.png)
 
 
