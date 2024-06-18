@@ -1,0 +1,27 @@
+{
+  "name": "local-file-source",
+  "config": {
+    "connector.class": "SpoolDirCsvSourceConnector",
+    "tasks.max": 1,
+    "input.path": "/data/uploads",
+    "input.file.pattern": ".*\\.csv",
+    "finished.path": "/data/finok",
+    "error.path": "/data/finerr",
+    "cleanup.policy": "MOVE",
+    "cleanup.policy.maintain.relative.path": "false",
+    "halt.on.error": "false",
+    "csv.charset": "UTF-8",
+    "schema.generation.enabled": "true",
+    "csv.first.row.as.header": true,
+    "topic": "file.content",
+    "errors.tolerance": "all",
+    "errors.log.enable": "true",
+    "errors.log.include.messages": "true",
+    "errors.deadletterqueue.topic.name": "deadletterqueue",
+    "errors.deadletterqueue.context.headers.enable": "true",
+    "value.schema": "{\n   \"name\":\"tweets.input.value.schema\",\n   \"type\":\"STRUCT\",\n   \"isOptional\":false,\n   \"fieldSchemas\":{\n      \"id\":{\n         \"type\":\"INT64\",\n         \"isOptional\":false\n      },\n      \"link\":{\n         \"type\":\"STRING\",\n         \"isOptional\":true\n      },\n      \"content\":{\n         \"type\":\"STRING\",\n         \"isOptional\":false\n      },\n      \"date\":{\n         \"type\":\"STRING\",\n         \"isOptional\":true\n      },\n      \"retweets\":{\n         \"type\":\"INT64\",\n         \"isOptional\":true\n      },\n      \"favorites\":{\n         \"type\":\"INT64\",\n         \"isOptional\":true\n      },\n      \"mentions\":{\n         \"type\":\"STRING\",\n         \"isOptional\":true\n      },\n      \"hashtags\":{\n         \"type\":\"STRING\",\n         \"isOptional\":true\n      },\n      \"geo\":{\n         \"type\":\"STRING\",\n         \"isOptional\":true\n      }\n   }\n}",
+    "key.schema": "{\n   \"name\":\"tweets.input.key.schema\",\n   \"type\":\"STRUCT\",\n   \"isOptional\":false,\n   \"fieldSchemas\":{\n      \"id\":{\n         \"type\":\"INT64\",\n         \"isOptional\":false\n      }\n   }\n}"
+
+
+  }
+}
