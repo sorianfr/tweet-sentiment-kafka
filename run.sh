@@ -4,6 +4,12 @@
 mkdir -p ./kafka-connect/plugins/kafka-connect-spooldir
 mkdir -p ./kafka-connect/plugins/kafka-connect-mongodb
 
+mkdir ./data/uploads
+mkdir ./data/uploads/finok
+mkdir ./data/uploads/finerr
+
+
+
 # Set the URL for the SpoolDir connector
 # Set the URL for the SpoolDir connector
 SPOOLDIR_URL='https://d2p6pa21dvn84.cloudfront.net/api/plugins/jcustenborder/kafka-connect-spooldir/versions/2.0.65/jcustenborder-kafka-connect-spooldir-2.0.65.zip'
