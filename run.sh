@@ -4,9 +4,18 @@
 mkdir -p ./kafka-connect/plugins/kafka-connect-spooldir
 mkdir -p ./kafka-connect/plugins/kafka-connect-mongodb
 
-mkdir ./data/uploads
-mkdir ./data/uploads/finok
-mkdir ./data/uploads/finerr
+# Create the main directory
+mkdir -p data
+
+# Create the subdirectories
+mkdir -p data/uploads
+mkdir -p data/finok
+mkdir -p data/finerr
+
+# Set the permissions
+chmod 777 data/uploads
+chmod 777 data/finok
+chmod 777 data/finerr
 
 
 
